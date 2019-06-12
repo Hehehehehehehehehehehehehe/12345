@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="数学成绩统计分析 ">
+<meta itemprop="description" content="# 建立学生名单num&lt;-seq(10378001,10378100)num## [1] 10378001 10378002 10378003 10378004 10378005 10378006 10378007## [8] 10378008 10378009 10378010 10378011 10378012 10378013 10378014## [15] 10378015 10378016 10378017 10378018 10378019 10378020 10378021## [22] 10378022 10378023 10378024 10378025 10378026 10378027 10378028## [29] 10378029 10378030 10378031 10378032 10378033 10378034 10378035## [36] 10378036 10378037 10378038 10378039 10378040 10378041 10378042## [43] 10378043 10378044 10378045 10378046 10378047 10378048 10378049## [50] 10378050 10378051 10378052 10378053 10378054 10378055 10378056## [57] 10378057 10378058 10378059 10378060 10378061 10378062 10378063## [64] 10378064 10378065 10378066 10378067 10378068 10378069 10378070## [71] 10378071 10378072 10378073 10378074 10378075 10378076 10378077## [78] 10378078 10378079 10378080 10378081 10378082 10378083 10378084## [85] 10378085 10378086 10378087 10378088 10378089 10378090 10378091## [92] 10378092 10378093 10378094 10378095 10378096 10378097 10378098## [99] 10378099 10378100# 微积分成绩x1&lt;-round(runif(100,min=80,max=100))#80到100分之间均匀分布，然后四舍五入x1## [1] 87 98 96 92 87 90 85 89 94 94 92 88 90 89 95 83 100## [18] 88 86 82 84 89 86 97 97 80 81 93 93 85 82 90 88 91## [35] 82 92 84 99 91 85 96 93 97 91 81 87 97 95 90 97 90## [52] 96 95 98 82 86 98 96 91 98 97 85 98 97 82 99 98 93## [69] 84 90 87 84 95 93 90 95 89 99 93 86 89 98 87 81 98## [86] 83 95 85 84 96 92 92 85 94 86 82 93 90 97 94# 线性代数成绩x2&lt;-round(rnorm(100,mean=80,sd=7))#产生100个正态分布，平均值是80，标准差是7，然后四舍五入x2## [1] 83 77 84 82 80 80 80 86 80 87 82 77 81 79 80 78 86 84 90 84 95 72 81## [24] 68 77 84 76 72 73 76 84 84 73 84 81 76 76 74 78 76 77 79 97 78 70 79## [47] 80 74 75 73 82 79 87 77 90 74 75 71 83 72 92 79 71 78 78 82 67 72 85## [70] 88 71 95 85 78 87 89 91 76 71 88 82 72 81 72 70 80 79 72 90 84 84 78## [93] 87 69 84 78 82 85 79 79# 概率统计成绩x3&lt;-round(rnorm(100,mean=83,sd=18))#产生100个正态分布，平均值是83，标准差是18，然后四舍五入x3[which(x3&gt;100)]=100#对产生的值中超过100的改写成100x3## [1] 76 84 89 62 91 80 100 72 65 71 56 74 68 85 93 67 67## [18] 100 100 86 59 73 93 86 100 87 65 79 74 100 77 100 77 100## [35] 73 66 72 90 84 97 91 90 87 99 81 89 67 88 99 83 65## [52] 75 66 75 87 80 69 87 90 78 100 78 78 36 71 81 81 70## [69] 94 89 97 68 100 73 83 86 100 88 88 82 95 76 83 82 71## [86] 100 82 60 72 78 81 80 64 93 47 80 99 82 95 97# 合成数据框x&lt;-data.">
+
+
+<meta itemprop="datePublished" content="2019-06-12T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-12T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1359">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="数学成绩统计分析 " />
+<meta property="og:description" content="# 建立学生名单num&lt;-seq(10378001,10378100)num## [1] 10378001 10378002 10378003 10378004 10378005 10378006 10378007## [8] 10378008 10378009 10378010 10378011 10378012 10378013 10378014## [15] 10378015 10378016 10378017 10378018 10378019 10378020 10378021## [22] 10378022 10378023 10378024 10378025 10378026 10378027 10378028## [29] 10378029 10378030 10378031 10378032 10378033 10378034 10378035## [36] 10378036 10378037 10378038 10378039 10378040 10378041 10378042## [43] 10378043 10378044 10378045 10378046 10378047 10378048 10378049## [50] 10378050 10378051 10378052 10378053 10378054 10378055 10378056## [57] 10378057 10378058 10378059 10378060 10378061 10378062 10378063## [64] 10378064 10378065 10378066 10378067 10378068 10378069 10378070## [71] 10378071 10378072 10378073 10378074 10378075 10378076 10378077## [78] 10378078 10378079 10378080 10378081 10378082 10378083 10378084## [85] 10378085 10378086 10378087 10378088 10378089 10378090 10378091## [92] 10378092 10378093 10378094 10378095 10378096 10378097 10378098## [99] 10378099 10378100# 微积分成绩x1&lt;-round(runif(100,min=80,max=100))#80到100分之间均匀分布，然后四舍五入x1## [1] 87 98 96 92 87 90 85 89 94 94 92 88 90 89 95 83 100## [18] 88 86 82 84 89 86 97 97 80 81 93 93 85 82 90 88 91## [35] 82 92 84 99 91 85 96 93 97 91 81 87 97 95 90 97 90## [52] 96 95 98 82 86 98 96 91 98 97 85 98 97 82 99 98 93## [69] 84 90 87 84 95 93 90 95 89 99 93 86 89 98 87 81 98## [86] 83 95 85 84 96 92 92 85 94 86 82 93 90 97 94# 线性代数成绩x2&lt;-round(rnorm(100,mean=80,sd=7))#产生100个正态分布，平均值是80，标准差是7，然后四舍五入x2## [1] 83 77 84 82 80 80 80 86 80 87 82 77 81 79 80 78 86 84 90 84 95 72 81## [24] 68 77 84 76 72 73 76 84 84 73 84 81 76 76 74 78 76 77 79 97 78 70 79## [47] 80 74 75 73 82 79 87 77 90 74 75 71 83 72 92 79 71 78 78 82 67 72 85## [70] 88 71 95 85 78 87 89 91 76 71 88 82 72 81 72 70 80 79 72 90 84 84 78## [93] 87 69 84 78 82 85 79 79# 概率统计成绩x3&lt;-round(rnorm(100,mean=83,sd=18))#产生100个正态分布，平均值是83，标准差是18，然后四舍五入x3[which(x3&gt;100)]=100#对产生的值中超过100的改写成100x3## [1] 76 84 89 62 91 80 100 72 65 71 56 74 68 85 93 67 67## [18] 100 100 86 59 73 93 86 100 87 65 79 74 100 77 100 77 100## [35] 73 66 72 90 84 97 91 90 87 99 81 89 67 88 99 83 65## [52] 75 66 75 87 80 69 87 90 78 100 78 78 36 71 81 81 70## [69] 94 89 97 68 100 73 83 86 100 88 88 82 95 76 83 82 71## [86] 100 82 60 72 78 81 80 64 93 47 80 99 82 95 97# 合成数据框x&lt;-data." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/%E6%95%B0%E5%AD%A6%E6%88%90%E7%BB%A9%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" />
+<meta property="article:published_time" content="2019-06-12T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-12T00:00:00&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数学成绩统计分析 "/>
+<meta name="twitter:description" content="# 建立学生名单num&lt;-seq(10378001,10378100)num## [1] 10378001 10378002 10378003 10378004 10378005 10378006 10378007## [8] 10378008 10378009 10378010 10378011 10378012 10378013 10378014## [15] 10378015 10378016 10378017 10378018 10378019 10378020 10378021## [22] 10378022 10378023 10378024 10378025 10378026 10378027 10378028## [29] 10378029 10378030 10378031 10378032 10378033 10378034 10378035## [36] 10378036 10378037 10378038 10378039 10378040 10378041 10378042## [43] 10378043 10378044 10378045 10378046 10378047 10378048 10378049## [50] 10378050 10378051 10378052 10378053 10378054 10378055 10378056## [57] 10378057 10378058 10378059 10378060 10378061 10378062 10378063## [64] 10378064 10378065 10378066 10378067 10378068 10378069 10378070## [71] 10378071 10378072 10378073 10378074 10378075 10378076 10378077## [78] 10378078 10378079 10378080 10378081 10378082 10378083 10378084## [85] 10378085 10378086 10378087 10378088 10378089 10378090 10378091## [92] 10378092 10378093 10378094 10378095 10378096 10378097 10378098## [99] 10378099 10378100# 微积分成绩x1&lt;-round(runif(100,min=80,max=100))#80到100分之间均匀分布，然后四舍五入x1## [1] 87 98 96 92 87 90 85 89 94 94 92 88 90 89 95 83 100## [18] 88 86 82 84 89 86 97 97 80 81 93 93 85 82 90 88 91## [35] 82 92 84 99 91 85 96 93 97 91 81 87 97 95 90 97 90## [52] 96 95 98 82 86 98 96 91 98 97 85 98 97 82 99 98 93## [69] 84 90 87 84 95 93 90 95 89 99 93 86 89 98 87 81 98## [86] 83 95 85 84 96 92 92 85 94 86 82 93 90 97 94# 线性代数成绩x2&lt;-round(rnorm(100,mean=80,sd=7))#产生100个正态分布，平均值是80，标准差是7，然后四舍五入x2## [1] 83 77 84 82 80 80 80 86 80 87 82 77 81 79 80 78 86 84 90 84 95 72 81## [24] 68 77 84 76 72 73 76 84 84 73 84 81 76 76 74 78 76 77 79 97 78 70 79## [47] 80 74 75 73 82 79 87 77 90 74 75 71 83 72 92 79 71 78 78 82 67 72 85## [70] 88 71 95 85 78 87 89 91 76 71 88 82 72 81 72 70 80 79 72 90 84 84 78## [93] 87 69 84 78 82 85 79 79# 概率统计成绩x3&lt;-round(rnorm(100,mean=83,sd=18))#产生100个正态分布，平均值是83，标准差是18，然后四舍五入x3[which(x3&gt;100)]=100#对产生的值中超过100的改写成100x3## [1] 76 84 89 62 91 80 100 72 65 71 56 74 68 85 93 67 67## [18] 100 100 86 59 73 93 86 100 87 65 79 74 100 77 100 77 100## [35] 73 66 72 90 84 97 91 90 87 99 81 89 67 88 99 83 65## [52] 75 66 75 87 80 69 87 90 78 100 78 78 36 71 81 81 70## [69] 94 89 97 68 100 73 83 86 100 88 88 82 95 76 83 82 71## [86] 100 82 60 72 78 81 80 64 93 47 80 99 82 95 97# 合成数据框x&lt;-data."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>数学成绩统计分析 </title>
+	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">He</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="/posts/">Posts</a>
+					<a href="/about-hugo/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/posts/">Posts</a></li>
+			<li><a href="/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 12, 2019</span></div>
+				<h1>数学成绩统计分析 </h1>
+			</header>
+			<div class="content">
+				
+
+
+<pre class="r"><code># 建立学生名单
+num&lt;-seq(10378001,10378100)
+num</code></pre>
+<pre><code>##   [1] 10378001 10378002 10378003 10378004 10378005 10378006 10378007
+##   [8] 10378008 10378009 10378010 10378011 10378012 10378013 10378014
+##  [15] 10378015 10378016 10378017 10378018 10378019 10378020 10378021
+##  [22] 10378022 10378023 10378024 10378025 10378026 10378027 10378028
+##  [29] 10378029 10378030 10378031 10378032 10378033 10378034 10378035
+##  [36] 10378036 10378037 10378038 10378039 10378040 10378041 10378042
+##  [43] 10378043 10378044 10378045 10378046 10378047 10378048 10378049
+##  [50] 10378050 10378051 10378052 10378053 10378054 10378055 10378056
+##  [57] 10378057 10378058 10378059 10378060 10378061 10378062 10378063
+##  [64] 10378064 10378065 10378066 10378067 10378068 10378069 10378070
+##  [71] 10378071 10378072 10378073 10378074 10378075 10378076 10378077
+##  [78] 10378078 10378079 10378080 10378081 10378082 10378083 10378084
+##  [85] 10378085 10378086 10378087 10378088 10378089 10378090 10378091
+##  [92] 10378092 10378093 10378094 10378095 10378096 10378097 10378098
+##  [99] 10378099 10378100</code></pre>
+<pre class="r"><code># 微积分成绩
+
+x1&lt;-round(runif(100,min=80,max=100))#80到100分之间均匀分布，然后四舍五入
+x1</code></pre>
+<pre><code>##   [1]  87  98  96  92  87  90  85  89  94  94  92  88  90  89  95  83 100
+##  [18]  88  86  82  84  89  86  97  97  80  81  93  93  85  82  90  88  91
+##  [35]  82  92  84  99  91  85  96  93  97  91  81  87  97  95  90  97  90
+##  [52]  96  95  98  82  86  98  96  91  98  97  85  98  97  82  99  98  93
+##  [69]  84  90  87  84  95  93  90  95  89  99  93  86  89  98  87  81  98
+##  [86]  83  95  85  84  96  92  92  85  94  86  82  93  90  97  94</code></pre>
+<pre class="r"><code># 线性代数成绩
+
+x2&lt;-round(rnorm(100,mean=80,sd=7))#产生100个正态分布，平均值是80，标准差是7，然后四舍五入
+x2</code></pre>
+<pre><code>##   [1] 83 77 84 82 80 80 80 86 80 87 82 77 81 79 80 78 86 84 90 84 95 72 81
+##  [24] 68 77 84 76 72 73 76 84 84 73 84 81 76 76 74 78 76 77 79 97 78 70 79
+##  [47] 80 74 75 73 82 79 87 77 90 74 75 71 83 72 92 79 71 78 78 82 67 72 85
+##  [70] 88 71 95 85 78 87 89 91 76 71 88 82 72 81 72 70 80 79 72 90 84 84 78
+##  [93] 87 69 84 78 82 85 79 79</code></pre>
+<pre class="r"><code># 概率统计成绩
+
+x3&lt;-round(rnorm(100,mean=83,sd=18))#产生100个正态分布，平均值是83，标准差是18，然后四舍五入
+x3[which(x3&gt;100)]=100#对产生的值中超过100的改写成100
+x3</code></pre>
+<pre><code>##   [1]  76  84  89  62  91  80 100  72  65  71  56  74  68  85  93  67  67
+##  [18] 100 100  86  59  73  93  86 100  87  65  79  74 100  77 100  77 100
+##  [35]  73  66  72  90  84  97  91  90  87  99  81  89  67  88  99  83  65
+##  [52]  75  66  75  87  80  69  87  90  78 100  78  78  36  71  81  81  70
+##  [69]  94  89  97  68 100  73  83  86 100  88  88  82  95  76  83  82  71
+##  [86] 100  82  60  72  78  81  80  64  93  47  80  99  82  95  97</code></pre>
+<pre class="r"><code># 合成数据框
+
+x&lt;-data.frame(num,x1,x2,x3)
+x</code></pre>
+<pre><code>##          num  x1 x2  x3
+## 1   10378001  87 83  76
+## 2   10378002  98 77  84
+## 3   10378003  96 84  89
+## 4   10378004  92 82  62
+## 5   10378005  87 80  91
+## 6   10378006  90 80  80
+## 7   10378007  85 80 100
+## 8   10378008  89 86  72
+## 9   10378009  94 80  65
+## 10  10378010  94 87  71
+## 11  10378011  92 82  56
+## 12  10378012  88 77  74
+## 13  10378013  90 81  68
+## 14  10378014  89 79  85
+## 15  10378015  95 80  93
+## 16  10378016  83 78  67
+## 17  10378017 100 86  67
+## 18  10378018  88 84 100
+## 19  10378019  86 90 100
+## 20  10378020  82 84  86
+## 21  10378021  84 95  59
+## 22  10378022  89 72  73
+## 23  10378023  86 81  93
+## 24  10378024  97 68  86
+## 25  10378025  97 77 100
+## 26  10378026  80 84  87
+## 27  10378027  81 76  65
+## 28  10378028  93 72  79
+## 29  10378029  93 73  74
+## 30  10378030  85 76 100
+## 31  10378031  82 84  77
+## 32  10378032  90 84 100
+## 33  10378033  88 73  77
+## 34  10378034  91 84 100
+## 35  10378035  82 81  73
+## 36  10378036  92 76  66
+## 37  10378037  84 76  72
+## 38  10378038  99 74  90
+## 39  10378039  91 78  84
+## 40  10378040  85 76  97
+## 41  10378041  96 77  91
+## 42  10378042  93 79  90
+## 43  10378043  97 97  87
+## 44  10378044  91 78  99
+## 45  10378045  81 70  81
+## 46  10378046  87 79  89
+## 47  10378047  97 80  67
+## 48  10378048  95 74  88
+## 49  10378049  90 75  99
+## 50  10378050  97 73  83
+## 51  10378051  90 82  65
+## 52  10378052  96 79  75
+## 53  10378053  95 87  66
+## 54  10378054  98 77  75
+## 55  10378055  82 90  87
+## 56  10378056  86 74  80
+## 57  10378057  98 75  69
+## 58  10378058  96 71  87
+## 59  10378059  91 83  90
+## 60  10378060  98 72  78
+## 61  10378061  97 92 100
+## 62  10378062  85 79  78
+## 63  10378063  98 71  78
+## 64  10378064  97 78  36
+## 65  10378065  82 78  71
+## 66  10378066  99 82  81
+## 67  10378067  98 67  81
+## 68  10378068  93 72  70
+## 69  10378069  84 85  94
+## 70  10378070  90 88  89
+## 71  10378071  87 71  97
+## 72  10378072  84 95  68
+## 73  10378073  95 85 100
+## 74  10378074  93 78  73
+## 75  10378075  90 87  83
+## 76  10378076  95 89  86
+## 77  10378077  89 91 100
+## 78  10378078  99 76  88
+## 79  10378079  93 71  88
+## 80  10378080  86 88  82
+## 81  10378081  89 82  95
+## 82  10378082  98 72  76
+## 83  10378083  87 81  83
+## 84  10378084  81 72  82
+## 85  10378085  98 70  71
+## 86  10378086  83 80 100
+## 87  10378087  95 79  82
+## 88  10378088  85 72  60
+## 89  10378089  84 90  72
+## 90  10378090  96 84  78
+## 91  10378091  92 84  81
+## 92  10378092  92 78  80
+## 93  10378093  85 87  64
+## 94  10378094  94 69  93
+## 95  10378095  86 84  47
+## 96  10378096  82 78  80
+## 97  10378097  93 82  99
+## 98  10378098  90 85  82
+## 99  10378099  97 79  95
+## 100 10378100  94 79  97</code></pre>
+<pre class="r"><code># 保存到硬盘
+
+write.table(x,file=&quot;d:\\mark.txt&quot;,col.names=F,row.names=F,sep=&quot; &quot;)#将数据保存到d:\mark.txt中，不保存行名和列名，数据以空格分割开来</code></pre>
+<pre class="r"><code># 对列求平均值
+
+colMeans(x)[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)]</code></pre>
+<pre><code>##    x1    x2    x3 
+## 90.63 79.82 81.44</code></pre>
+<pre class="r"><code># 求成绩的平均值，最大值，最小值
+# apply()函数：举例apply(x,2,mean)中的第一个参数表示传入的数据，第二个参数表示是对行还是列进行运算，1表示行，2表示列，第三个参数表示所求的形式，mean求均值，max求最大值 
+
+apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],2,mean)</code></pre>
+<pre><code>##    x1    x2    x3 
+## 90.63 79.82 81.44</code></pre>
+<pre class="r"><code>apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],2,max)</code></pre>
+<pre><code>##  x1  x2  x3 
+## 100  97 100</code></pre>
+<pre class="r"><code>apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],2,min)</code></pre>
+<pre><code>## x1 x2 x3 
+## 80 67 36</code></pre>
+<pre class="r"><code># 求出总分最高的同学
+apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],1,sum)</code></pre>
+<pre><code>##   [1] 246 259 269 236 258 250 265 247 239 252 230 239 239 253 268 228 253
+##  [18] 272 276 252 238 234 260 251 274 251 222 244 240 261 243 274 238 275
+##  [35] 236 234 232 263 253 258 264 262 281 268 232 255 244 257 264 253 237
+##  [52] 250 248 250 259 240 242 254 264 248 289 242 247 211 231 262 246 235
+##  [69] 263 267 255 247 280 244 260 270 280 263 252 256 266 246 251 235 239
+##  [86] 263 256 217 246 258 257 250 236 256 217 240 274 257 271 270</code></pre>
+<pre class="r"><code>which.max(apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],1,sum))</code></pre>
+<pre><code>## [1] 61</code></pre>
+<pre class="r"><code>x$num[which.max(apply(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],1,sum))]</code></pre>
+<pre><code>## [1] 10378061</code></pre>
+<pre class="r"><code># 直方图
+
+hist(x$x1)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>hist(x$x2)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<pre class="r"><code>hist(x$x3)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+<pre class="r"><code># 散点图
+
+plot(x$x1,x$x2)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code># 柱状图
+
+table(x$x1)</code></pre>
+<pre><code>## 
+##  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97 
+##   1   3   6   2   5   6   5   5   3   5   8   4   5   7   4   6   5   8 
+##  98  99 100 
+##   8   3   1</code></pre>
+<pre class="r"><code>barplot(table(x$x1))</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code># 饼图
+
+pie(table(x$x1))</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code># 箱尾图
+# 箱子的上下横线为样本的25%和75%分位数,中间的横线为样本的中位数,上下延伸的直线称为尾线，尾线的尽头为最高值和最低值 
+
+boxplot(x$x1,x$x2,x$x3)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code># 星相图
+# 每个观测单位的数值表示为一个图形每个图的每个角表示一个标量，字符串类型会标注在图的下方,角线的长度表达值的大小
+
+stars(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)])</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>stars(x[c(&quot;x1&quot;,&quot;x2&quot;,&quot;x3&quot;)],full=T,draw.segment=T)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<pre class="r"><code># 脸谱图
+# 用五官的宽度和高度来描绘数值 
+
+library(TeachingDemos)
+faces2(x)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code># QQ图
+# 可用于判断是否正态分布,直线的斜率是标准差，截距是均值,点的散布越接近直线，则越接近正态分布
+
+qqnorm(x1)
+qqline(x1)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code># 散点图
+
+plot(x$x1,x$x2,main=&quot;微积分与线性代数成绩的关系&quot;,xlab=&quot;微积分&quot;,ylab=&quot;线性代数&quot;,xlim=c(0,100),ylim=c(0,100),xaxs=&quot;i&quot;,yaxs=&quot;i&quot;,col=&quot;red&quot;,pch=19)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code># 散点图集
+# 遍历样本中全部的变量配对画出二元图，直观地了解所有变量之间的关系
+par(mfrow=c(3,1))
+plot(x1,x2)
+plot(x2,x3)
+plot(x3,x1)</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code># 三维散点图
+
+library(scatterplot3d)
+scatterplot3d(x[2:4])</code></pre>
+<p><img src="/post/2019-06-12-数学成绩统计分析_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1359 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-06-12 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="/posts/2019-06-12-%E9%9B%B7%E8%BE%BE%E5%9B%BE/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>雷达图</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="/">John Doe</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
+
+</body>
+
+</html>

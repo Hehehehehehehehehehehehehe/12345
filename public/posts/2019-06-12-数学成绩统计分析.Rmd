@@ -1,0 +1,136 @@
+---
+title: '数学成绩统计分析 '
+author: ''
+date: '2019-06-12'
+slug: 数学成绩统计分析
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+```{r}
+# 建立学生名单
+num<-seq(10378001,10378100)
+num
+```
+```{r}
+# 微积分成绩
+
+x1<-round(runif(100,min=80,max=100))#80到100分之间均匀分布，然后四舍五入
+x1
+```
+```{r}
+# 线性代数成绩
+
+x2<-round(rnorm(100,mean=80,sd=7))#产生100个正态分布，平均值是80，标准差是7，然后四舍五入
+x2
+```
+```{r}
+# 概率统计成绩
+
+x3<-round(rnorm(100,mean=83,sd=18))#产生100个正态分布，平均值是83，标准差是18，然后四舍五入
+x3[which(x3>100)]=100#对产生的值中超过100的改写成100
+x3
+```
+```{r}
+# 合成数据框
+
+x<-data.frame(num,x1,x2,x3)
+x
+```
+```{r}
+# 保存到硬盘
+
+write.table(x,file="d:\\mark.txt",col.names=F,row.names=F,sep=" ")#将数据保存到d:\mark.txt中，不保存行名和列名，数据以空格分割开来
+```
+
+```{r}
+# 对列求平均值
+
+colMeans(x)[c("x1","x2","x3")]
+```
+```{r}
+# 求成绩的平均值，最大值，最小值
+# apply()函数：举例apply(x,2,mean)中的第一个参数表示传入的数据，第二个参数表示是对行还是列进行运算，1表示行，2表示列，第三个参数表示所求的形式，mean求均值，max求最大值 
+
+apply(x[c("x1","x2","x3")],2,mean)
+apply(x[c("x1","x2","x3")],2,max)
+apply(x[c("x1","x2","x3")],2,min)
+```
+```{r}
+# 求出总分最高的同学
+apply(x[c("x1","x2","x3")],1,sum)
+which.max(apply(x[c("x1","x2","x3")],1,sum))
+x$num[which.max(apply(x[c("x1","x2","x3")],1,sum))]
+```
+```{r}
+# 直方图
+
+hist(x$x1)
+hist(x$x2)
+hist(x$x3)
+```
+```{r}
+# 散点图
+
+plot(x$x1,x$x2)
+```
+```{r}
+# 柱状图
+
+table(x$x1)
+barplot(table(x$x1))
+```
+```{r}
+# 饼图
+
+pie(table(x$x1))
+```
+```{r}
+# 箱尾图
+# 箱子的上下横线为样本的25%和75%分位数,中间的横线为样本的中位数,上下延伸的直线称为尾线，尾线的尽头为最高值和最低值 
+
+boxplot(x$x1,x$x2,x$x3)
+```
+```{r}
+# 星相图
+# 每个观测单位的数值表示为一个图形每个图的每个角表示一个标量，字符串类型会标注在图的下方,角线的长度表达值的大小
+
+stars(x[c("x1","x2","x3")])
+stars(x[c("x1","x2","x3")],full=T,draw.segment=T)
+```
+```{r}
+# 脸谱图
+# 用五官的宽度和高度来描绘数值 
+
+library(TeachingDemos)
+faces2(x)
+```
+```{r}
+# QQ图
+# 可用于判断是否正态分布,直线的斜率是标准差，截距是均值,点的散布越接近直线，则越接近正态分布
+
+qqnorm(x1)
+qqline(x1)
+```
+```{r}
+# 散点图
+
+plot(x$x1,x$x2,main="微积分与线性代数成绩的关系",xlab="微积分",ylab="线性代数",xlim=c(0,100),ylim=c(0,100),xaxs="i",yaxs="i",col="red",pch=19)
+```
+```{r}
+# 散点图集
+# 遍历样本中全部的变量配对画出二元图，直观地了解所有变量之间的关系
+par(mfrow=c(3,1))
+plot(x1,x2)
+plot(x2,x3)
+plot(x3,x1)
+```
+```{r}
+# 三维散点图
+
+library(scatterplot3d)
+scatterplot3d(x[2:4])
+```
+

@@ -1,0 +1,20 @@
+---
+title: 雷达图
+date: '2019-06-12'
+---
+```{r}
+library(fmsb)
+
+# 生成数据
+
+data=as.data.frame(matrix(sample(2:20,10,replace=T),ncol=10))
+
+colnames(data)=c("生命","武力","智慧","防御" ,"侦察","斩杀","命中","闪避","幸运","消耗")
+
+data=rbind(rep(20,10),rep(0,10),data)
+
+# 雷达图参数设置
+
+radarchart(data,axistype=1,pcol=rgb(0.2,0.5,0.5,0.9),pfcol=rgb(0.2,0.5,0.5,0.5),plwd=4,cglcol="grey",cglty=1,axislabcol="grey",caxislabels=seq(0,20,5),cglwd=0.8,vlcex=0.8)
+```
+

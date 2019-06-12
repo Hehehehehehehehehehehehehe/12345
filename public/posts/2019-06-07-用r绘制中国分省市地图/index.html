@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="用R绘制中国人口省份地图">
+<meta itemprop="description" content="library(maptools)## 载入需要的程辑包：sp## Checking rgeos availability: FALSE## Note: when rgeos is not available, polygon geometry computations in maptools depend on gpclib,## which has a restricted licence. It is disabled by default;## to enable gpclib, type gpclibPermit()library(ggplot2)## Registered S3 methods overwritten by &#39;ggplot2&#39;:## method from ## [.quosures rlang## c.quosures rlang## print.quosures rlanglibrary(rgdal)## rgdal: version: 1.4-4, (SVN revision 833)## Geospatial Data Abstraction Library extensions to R successfully loaded## Loaded GDAL runtime: GDAL 2.">
+
+
+<meta itemprop="datePublished" content="2019-06-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="222">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="用R绘制中国人口省份地图" />
+<meta property="og:description" content="library(maptools)## 载入需要的程辑包：sp## Checking rgeos availability: FALSE## Note: when rgeos is not available, polygon geometry computations in maptools depend on gpclib,## which has a restricted licence. It is disabled by default;## to enable gpclib, type gpclibPermit()library(ggplot2)## Registered S3 methods overwritten by &#39;ggplot2&#39;:## method from ## [.quosures rlang## c.quosures rlang## print.quosures rlanglibrary(rgdal)## rgdal: version: 1.4-4, (SVN revision 833)## Geospatial Data Abstraction Library extensions to R successfully loaded## Loaded GDAL runtime: GDAL 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2019-06-07-%E7%94%A8r%E7%BB%98%E5%88%B6%E4%B8%AD%E5%9B%BD%E5%88%86%E7%9C%81%E5%B8%82%E5%9C%B0%E5%9B%BE/" />
+<meta property="article:published_time" content="2019-06-07T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-07T00:00:00&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用R绘制中国人口省份地图"/>
+<meta name="twitter:description" content="library(maptools)## 载入需要的程辑包：sp## Checking rgeos availability: FALSE## Note: when rgeos is not available, polygon geometry computations in maptools depend on gpclib,## which has a restricted licence. It is disabled by default;## to enable gpclib, type gpclibPermit()library(ggplot2)## Registered S3 methods overwritten by &#39;ggplot2&#39;:## method from ## [.quosures rlang## c.quosures rlang## print.quosures rlanglibrary(rgdal)## rgdal: version: 1.4-4, (SVN revision 833)## Geospatial Data Abstraction Library extensions to R successfully loaded## Loaded GDAL runtime: GDAL 2."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>用R绘制中国人口省份地图</title>
+	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">He</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="/posts/">Posts</a>
+					<a href="/about-hugo/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/posts/">Posts</a></li>
+			<li><a href="/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 7, 2019</span></div>
+				<h1>用R绘制中国人口省份地图</h1>
+			</header>
+			<div class="content">
+				
+
+
+<pre class="r"><code>library(maptools)</code></pre>
+<pre><code>## 载入需要的程辑包：sp</code></pre>
+<pre><code>## Checking rgeos availability: FALSE
+##      Note: when rgeos is not available, polygon geometry     computations in maptools depend on gpclib,
+##      which has a restricted licence. It is disabled by default;
+##      to enable gpclib, type gpclibPermit()</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggplot2&#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang</code></pre>
+<pre class="r"><code>library(rgdal)</code></pre>
+<pre><code>## rgdal: version: 1.4-4, (SVN revision 833)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
+##  Path to GDAL shared files: C:/Users/Lenovo/Documents/R/win-library/3.6/rgdal/gdal
+##  GDAL binary built with GEOS: TRUE 
+##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
+##  Path to PROJ.4 shared files: C:/Users/Lenovo/Documents/R/win-library/3.6/rgdal/proj
+##  Linking to sp version: 1.3-1</code></pre>
+<pre class="r"><code>library(mapdata)</code></pre>
+<pre><code>## 载入需要的程辑包：maps</code></pre>
+<pre class="r"><code># 载入中国地图数据集
+
+china=rgdal :: readOGR(&quot;C:\\Users\\Lenovo\\Documents\\R\\win-library\\3.6\\chinaprovinceborderdata_tar_gz\\china-province-border-data\\bou2_4p.shp&quot;)</code></pre>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;C:\Users\Lenovo\Documents\R\win-library\3.6\chinaprovinceborderdata_tar_gz\china-province-border-data\bou2_4p.shp&quot;, layer: &quot;bou2_4p&quot;
+## with 925 features
+## It has 7 fields
+## Integer64 fields read as strings:  BOU2_4M_ BOU2_4M_ID</code></pre>
+<pre class="r"><code># 获取数据 
+
+x&lt;-china@data
+
+# 转换为dataframe
+
+xs&lt;-data.frame(x,id=seq(0:924)-1)
+
+# 将china转换为datafarme
+
+shapefile_df &lt;- fortify(china)</code></pre>
+<pre><code>## Regions defined for each Polygons</code></pre>
+<pre class="r"><code># 组合成完整的dataframe
+
+china_mapdata&lt;-merge(shapefile_df, xs, type = &quot;full&quot;) 
+
+# 省份名称
+
+NAME&lt;-c(&quot;北京市&quot;,&quot;天津市&quot;,&quot;河北省&quot;,&quot;山西省&quot;,&quot;内蒙古自治区&quot;,&quot;辽宁省&quot;,&quot;吉林省&quot;,&quot;黑龙江省&quot;,&quot;上海市&quot;,&quot;江苏省&quot;,&quot;浙江省&quot;,&quot;安徽省&quot;,&quot;福建省&quot;,&quot;江西省&quot;,&quot;山东省&quot;,&quot;河南省&quot;,&quot;湖北省&quot;, &quot;湖南省&quot;,&quot;广东省&quot;, &quot;广西壮族自治区&quot;,&quot;海南省&quot;, &quot;重庆市&quot;,&quot;四川省&quot;, &quot;贵州省&quot;,&quot;云南省&quot;,&quot;西藏自治区&quot;,&quot;陕西省&quot;,&quot;甘肃省&quot;,&quot;青海省&quot;,&quot;宁夏回族自治区&quot;,&quot;新疆维吾尔自治区&quot;, &quot;台湾省&quot;,&quot;香港特别行政区&quot;)
+
+# 各个省份的人口
+
+pop&lt;-c(7355291,3963604,20813492,10654162,8470472,15334912,9162183,13192935,8893483,25635291,20060115,19322432,11971873,11847841,30794664,26404973,17253385,19029894,32222752,13467663,2451819,10272559,26383458,10745630,12695396,689521,11084516,7113833,1586635,1945064,6902850,23193638,7026400)
+
+# 组合成完整的d人口-省份的dataframe
+
+pop&lt;-data.frame(NAME,pop)
+
+# 和中国的地图信息相结合,组合成datdaframe
+
+china_pop&lt;-merge(china_mapdata, pop, type = &quot;full&quot;)
+
+ggplot(china_pop, aes(x = long, y = lat, group = group,fill=pop))+
+  geom_polygon( )+
+  geom_path(colour = &quot;grey40&quot;)</code></pre>
+<p><img src="/posts/2019-06-07-用r绘制中国分省市地图_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>222 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-06-07 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="/posts/2019-06-12-%E9%9B%B7%E8%BE%BE%E5%9B%BE/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>雷达图</span>
+			</a>
+			<a class="prev-post" href="/posts/2019-06-06-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>绘制散点图</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="/">John Doe</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
+
+</body>
+
+</html>

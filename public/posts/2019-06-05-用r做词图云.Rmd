@@ -1,13 +1,6 @@
 ---
-title: 用R做词图云1
-author: ''
+title: 用R做词云图
 date: '2019-06-05'
-slug: 用r做词图云
-categories:
-  - R
-tags: []
-comments: no
-images: ~
 ---
 
 ```{r}
