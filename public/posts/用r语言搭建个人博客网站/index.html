@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="用R语言搭建个人博客网站">
+<meta itemprop="description" content="一、准备第一步：安装R，Rstudio，Git
+第二步：注册Github账号
+第三步：生成 SSH 公钥
+安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C “你的GitHub注册邮箱”然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$ clip &lt; ~/.ssh/id_rsa.pub登录Github，选择Personal settings-&gt;SSH and GPG keys-&gt;New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。 第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages(“blogdown”)二、用Rstudio编辑博客系统配置需要的环境后，你就可以通过Rstudio来生成blog了。
+第一步：新建一个Rblogdown项目
+打开Rstudio，选择File-&gt;New Project-&gt;New Directory-&gt;Website using blogdown。在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。上述过程也可以通过命令来实现：blogdown::new_site(theme = “xxx”) 。第二步：你会在你的Rstudio中看到项目文件的列表：
+config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。index.Rmd: 最终生成index.html 。content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客">
+
+
+<meta itemprop="datePublished" content="2019-06-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="99">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="用R语言搭建个人博客网站" />
+<meta property="og:description" content="一、准备第一步：安装R，Rstudio，Git
+第二步：注册Github账号
+第三步：生成 SSH 公钥
+安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C “你的GitHub注册邮箱”然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$ clip &lt; ~/.ssh/id_rsa.pub登录Github，选择Personal settings-&gt;SSH and GPG keys-&gt;New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。 第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages(“blogdown”)二、用Rstudio编辑博客系统配置需要的环境后，你就可以通过Rstudio来生成blog了。
+第一步：新建一个Rblogdown项目
+打开Rstudio，选择File-&gt;New Project-&gt;New Directory-&gt;Website using blogdown。在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。上述过程也可以通过命令来实现：blogdown::new_site(theme = “xxx”) 。第二步：你会在你的Rstudio中看到项目文件的列表：
+config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。index.Rmd: 最终生成index.html 。content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/%E7%94%A8r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" />
+<meta property="article:published_time" content="2019-06-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-02T00:00:00&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用R语言搭建个人博客网站"/>
+<meta name="twitter:description" content="一、准备第一步：安装R，Rstudio，Git
+第二步：注册Github账号
+第三步：生成 SSH 公钥
+安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C “你的GitHub注册邮箱”然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$ clip &lt; ~/.ssh/id_rsa.pub登录Github，选择Personal settings-&gt;SSH and GPG keys-&gt;New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。 第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages(“blogdown”)二、用Rstudio编辑博客系统配置需要的环境后，你就可以通过Rstudio来生成blog了。
+第一步：新建一个Rblogdown项目
+打开Rstudio，选择File-&gt;New Project-&gt;New Directory-&gt;Website using blogdown。在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。上述过程也可以通过命令来实现：blogdown::new_site(theme = “xxx”) 。第二步：你会在你的Rstudio中看到项目文件的列表：
+config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。index.Rmd: 最终生成index.html 。content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>用R语言搭建个人博客网站</title>
+	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">Hugo Hermit</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="/posts/">Posts</a>
+					<a href="/about-hugo/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/posts/">Posts</a></li>
+			<li><a href="/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 2, 2019</span></div>
+				<h1>用R语言搭建个人博客网站</h1>
+			</header>
+			<div class="content">
+				
+
+
+<div class="section level2">
+<h2>一、准备</h2>
+<p><strong>第一步：安装R，Rstudio，Git</strong></p>
+<p><strong>第二步：注册Github账号</strong></p>
+<p><strong>第三步：生成 SSH 公钥</strong></p>
+<ol style="list-style-type: decimal">
+<li>安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C “你的GitHub注册邮箱”</li>
+<li>然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。</li>
+<li>打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$ clip &lt; ~/.ssh/id_rsa.pub</li>
+<li>登录Github，选择Personal settings-&gt;SSH and GPG keys-&gt;New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。 第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages(“blogdown”)</li>
+</ol>
+</div>
+<div id="rstudio" class="section level2">
+<h2>二、用Rstudio编辑博客系统</h2>
+<p>配置需要的环境后，你就可以通过Rstudio来生成blog了。</p>
+<p><strong>第一步：新建一个Rblogdown项目</strong></p>
+<ol style="list-style-type: decimal">
+<li>打开Rstudio，选择File-&gt;New Project-&gt;New Directory-&gt;Website using blogdown。</li>
+<li>在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。</li>
+<li>上述过程也可以通过命令来实现：blogdown::new_site(theme = “xxx”) 。</li>
+</ol>
+<p><strong>第二步：你会在你的Rstudio中看到项目文件的列表：</strong></p>
+<ul>
+<li>config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。</li>
+<li>index.Rmd: 最终生成index.html 。</li>
+<li>content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。</li>
+<li>public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。</li>
+<li>static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。</li>
+<li>themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。</li>
+</ul>
+<p><strong>第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客</strong></p>
+<p><strong>第四步：Post你的Rmd博文</strong></p>
+<ol style="list-style-type: decimal">
+<li>content文件夹中的内容就是你要Post的内容，需先删除掉content-&gt;post文件夹下的文件，同时你也可以更改about.md文件的内容。</li>
+<li>清空文件夹后你就可以按照下面的步骤Post自己的博文：tools-&gt;Addins-&gt;blogdown New Post-&gt;Excute</li>
+<li>新建一个Post的Rmd文档,填写好标题、作者等内容后，点击Done，即可在Post的文件夹下看到生成的Rmd文档，你就可以编辑博文内容。</li>
+<li>保存后生成你的博客：files-&gt;save</li>
+</ol>
+</div>
+<div class="section level2">
+<h2>三、部署网站</h2>
+<p><strong>第一步：将博客托管到GitHub</strong></p>
+<ol style="list-style-type: decimal">
+<li>登录 GitHub，点击 GitHub 中的 New repository 创建新仓库。</li>
+<li>在新仓库界面的clone or download下复制代码仓库地址。</li>
+<li>打开Rstudio，选择File-&gt;Version Control，在对话框中的Repository URL下粘贴刚复制的代码地址，点击Create Project。</li>
+<li>在Rstudio上的Github图标下拉选择push，将弹出对话框显示push过程，成功后打开github中对应的仓库，可以看到你本地博客网页的所有代码文件都已经上传到github上。</li>
+</ol>
+<p><strong>第二步：将博客托管到Netlify</strong></p>
+<ol style="list-style-type: decimal">
+<li>注册登录Netlify(<a href="https://app.netlify.com/signup" class="uri">https://app.netlify.com/signup</a>),可以直接通过GitHub账号登录。</li>
+<li>点击 New site from git，点击GitHub，搜索GitHub中仓库的名称，填写部署的相关信息并点击部署。</li>
+<li>在部署完成的界面中点击黄色字体site deploy in progress，将你的博客文件夹下的public文件夹拖到下方的空白区域中，上传成功后上面就显示生成了你的博客网址。</li>
+</ol>
+</div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>99 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-06-02 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="/posts/2019-06-05-%E7%94%A8r%E7%94%BB%E6%B5%81%E7%A8%8B%E5%9B%BE/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>用R画流程图</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="/">John Doe</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
+
+</body>
+
+</html>

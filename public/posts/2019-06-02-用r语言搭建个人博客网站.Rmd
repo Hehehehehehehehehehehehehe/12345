@@ -1,0 +1,64 @@
+---
+title: 用R语言搭建个人博客网站
+author: ''
+date: '2019-06-02'
+slug: 用r语言搭建个人博客网站
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+## 一、准备
+**第一步：安装R，Rstudio，Git**
+
+**第二步：注册Github账号**
+
+**第三步：生成 SSH 公钥**
+
+1. 安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C "你的GitHub注册邮箱"
+2. 然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。
+3. 打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$  clip < ~/.ssh/id_rsa.pub
+4. 登录Github，选择Personal settings->SSH and GPG keys->New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。
+第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages("blogdown")
+
+## 二、用Rstudio编辑博客系统
+配置需要的环境后，你就可以通过Rstudio来生成blog了。
+
+**第一步：新建一个Rblogdown项目**
+
+1. 打开Rstudio，选择File->New Project->New Directory->Website using blogdown。
+2. 在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。
+3. 上述过程也可以通过命令来实现：blogdown::new_site(theme = "xxx") 。
+
+**第二步：你会在你的Rstudio中看到项目文件的列表：**
+
++ config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。
++ index.Rmd: 最终生成index.html 。
++ content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。
++ public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。
++ static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。
++ themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。
+
+**第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客**
+
+**第四步：Post你的Rmd博文**
+
+1. content文件夹中的内容就是你要Post的内容，需先删除掉content->post文件夹下的文件，同时你也可以更改about.md文件的内容。
+2. 清空文件夹后你就可以按照下面的步骤Post自己的博文：tools->Addins->blogdown New Post->Excute
+3. 新建一个Post的Rmd文档,填写好标题、作者等内容后，点击Done，即可在Post的文件夹下看到生成的Rmd文档，你就可以编辑博文内容。
+4. 保存后生成你的博客：files->save
+
+## 三、部署网站
+**第一步：将博客托管到GitHub**
+
+1. 登录 GitHub，点击 GitHub 中的 New repository 创建新仓库。
+2. 在新仓库界面的clone or download下复制代码仓库地址。
+3. 打开Rstudio，选择File->Version Control，在对话框中的Repository URL下粘贴刚复制的代码地址，点击Create Project。
+4. 在Rstudio上的Github图标下拉选择push，将弹出对话框显示push过程，成功后打开github中对应的仓库，可以看到你本地博客网页的所有代码文件都已经上传到github上。
+
+**第二步：将博客托管到Netlify**
+
+1. 注册登录Netlify(https://app.netlify.com/signup),可以直接通过GitHub账号登录。
+2. 点击 New site from git，点击GitHub，搜索GitHub中仓库的名称，填写部署的相关信息并点击部署。
+3. 在部署完成的界面中点击黄色字体site deploy in progress，将你的博客文件夹下的public文件夹拖到下方的空白区域中，上传成功后上面就显示生成了你的博客网址。

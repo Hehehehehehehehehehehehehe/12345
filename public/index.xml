@@ -7,62 +7,62 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 24 Dec 2018 12:29:41 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 06 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>The &#34;figure&#34; Shortcode</title>
-      <link>/posts/the-figure-shortcode/</link>
-      <pubDate>Mon, 24 Dec 2018 12:29:41 +0800</pubDate>
+      <title>中国人口地图</title>
+      <link>/posts/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E5%8F%A3%E5%9C%B0%E5%9B%BE/</link>
+      <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/the-figure-shortcode/</guid>
-      <description>Hugo has figure shortcode built in, so you can easily add figcaptions or hyperlink rel attributes to images. Documentations can be found here:
-https://gohugo.io/content-management/shortcodes/#figure
-This theme has 3 CSS classes made for figure elements:
- big: images will break the width limit of main content area. left: images will float to the left. right: images will float to the right.  If a figure has no class set, the image will behave just like a normal markdown image: !</description>
+      <guid>/posts/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E5%8F%A3%E5%9C%B0%E5%9B%BE/</guid>
+      <description>library(sp) library(maptools) library(rgdal) library(ggplot2) # 载入中国地图数据集 china=readShapePoly(‘E:\Udacity\Data Analysis High\R\R_Study\第一天数据\bou2_4p.shp’) # 获取数据
+x&amp;lt;-china@data # 转换为datafarme xs&amp;lt;-data.frame(x,id=seq(0:924)-1) # 将china转换为datafarme shapefile_df &amp;lt;- fortify(china) # 组合成完整的dataframe china_mapdata&amp;lt;-join(shapefile_df, xs, type = “full”) # 省份名称 NAME&amp;lt;-c(“北京市”,“天津市”,“河北省”,“山西省”,“内蒙古自治区”,“辽宁省”,“吉林省”, “黑龙江省”,“上海市”,“江苏省”,“浙江省”,“安徽省”,“福建省”, “江西省”,“山东省”,“河南省”, “湖北省”, “湖南省”,“广东省”, “广西壮族自治区”,“海南省”, “重庆市”,“四川省”, “贵州省”, “云南省”,“西藏自治区”,“陕西省”,“甘肃省”,“青海省”,“宁夏回族自治区”,“新疆维吾尔自治区”, “台湾省”,“香港特别行政区”) # 各个省份的人口 pop&amp;lt;-c(7355291,3963604,20813492,10654162,8470472,15334912,9162183,13192935,8893483,25635291,20060115,19322432,11971873,11847841,30794664,26404973, 17253385,19029894,32222752,13467663,2451819,10272559,26383458,10745630, 12695396,689521,11084516,7113833,1586635,1945064,6902850,23193638,7026400) # 组合成完整的d人口-省份的dataframe pop&amp;lt;-data.frame(NAME,pop) # 和中国的地图信息相结合,组合成datdaframe china_pop&amp;lt;-join(china_mapdata, pop, type = “full”)
+ggplot(china_pop, aes(x = long, y = lat, group = group,fill=pop))+ geom_polygon( )+ geom_path(colour = “grey40”)</description>
     </item>
     
     <item>
-      <title>Post With Featured Image</title>
-      <link>/posts/post-with-featured-image/</link>
-      <pubDate>Mon, 01 Oct 2018 16:15:09 +0800</pubDate>
+      <title>绘制散点图</title>
+      <link>/posts/2019-06-06-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</link>
+      <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/post-with-featured-image/</guid>
-      <description>Just define the image URL in the content’s front matter, the featured image will be displayed as the background.
-For example:
----images:-https://picsum.photos/1024/768/?random--- This is an array, you can set multiple urls, only the first url will be used. These images is also used in Twitter Cards and the Open Graph metadata.</description>
+      <guid>/posts/2019-06-06-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</guid>
+      <description>library(ggplot2)p&amp;lt;-ggplot(economics,aes(x=pop,y=psavert))p+geom_point()+geom_smooth(method = &amp;quot;lm&amp;quot;,se=FALSE)</description>
     </item>
     
     <item>
-      <title>Typography</title>
-      <link>/posts/typography/</link>
-      <pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate>
+      <title>用R做词图云1</title>
+      <link>/posts/%E7%94%A8r%E5%81%9A%E8%AF%8D%E5%9B%BE%E4%BA%91/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/typography/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+      <guid>/posts/%E7%94%A8r%E5%81%9A%E8%AF%8D%E5%9B%BE%E4%BA%91/</guid>
+      <description>library(jiebaRD)library(jiebaR)engine = worker()word &amp;lt;- scan(&amp;#39;C:\\Users\\Lenovo\\Desktop\\《三体》.txt&amp;#39;,sep=&amp;#39;\n&amp;#39;,what=&amp;#39;&amp;#39;,encoding=&amp;quot;UTF-8&amp;quot;)engine_s&amp;lt;-worker(stop_word = &amp;quot;C:\\Users\\Lenovo\\Desktop\\stopwords.txt&amp;quot;)seg&amp;lt;-segment(word,engine_s)f&amp;lt;-freq(seg)f&amp;lt;-f[order(f[2],decreasing = TRUE),]f1&amp;lt;-f[1:200,]library(wordcloud2)wordcloud2(f1,size = 3,shape = &amp;#39;triangle&amp;#39;){&#34;x&#34;:{&#34;word&#34;:[&#34;　&#34;,&#34;中&#34;,&#34;一个&#34;,&#34;说&#34;,&#34;没有&#34;,&#34;汪淼&#34;,&#34;汪&#34;,&#34;太阳&#34;,&#34;淼&#34;,&#34;文明&#34;,&#34;三体&#34;,&#34;世界&#34;,&#34;看到&#34;,&#34;知道&#34;,&#34;叶文洁&#34;,&#34;现在&#34;,&#34;叶&#34;,&#34;可能&#34;,&#34;宇宙&#34;,&#34;时&#34;,&#34;地球&#34;,&#34;文&#34;,&#34;洁&#34;,&#34;已经&#34;,&#34;信息&#34;,&#34;人类&#34;,&#34;想&#34;,&#34;会&#34;,&#34;这种&#34;,&#34;科学&#34;,&#34;出现&#34;,&#34;发现&#34;,&#34;问&#34;,&#34;更&#34;,&#34;研究&#34;,&#34;基地&#34;,&#34;红岸&#34;,&#34;起来&#34;,&#34;两个&#34;,&#34;时间&#34;,&#34;三&#34;,&#34;走&#34;,&#34;一种&#34;,&#34;里&#34;,&#34;东西&#34;,&#34;很快&#34;,&#34;进行&#34;,&#34;发射&#34;,&#34;问题&#34;,&#34;体&#34;,&#34;最后&#34;,&#34;存在&#34;,&#34;史&#34;,&#34;看着&#34;,&#34;纪元&#34;,&#34;运行&#34;,&#34;事&#34;,&#34;巨大&#34;,&#34;做&#34;,&#34;系统&#34;,&#34;没&#34;,&#34;技术&#34;,&#34;智子&#34;,&#34;前&#34;,&#34;质子&#34;,&#34;号&#34;,&#34;元首&#34;,&#34;感觉&#34;,&#34;回答&#34;,&#34;发出&#34;,&#34;出&#34;,&#34;站&#34;,&#34;真的&#34;,&#34;一次&#34;,&#34;一直&#34;,&#34;背景&#34;,&#34;计算机&#34;,&#34;一下&#34;,&#34;工作&#34;,&#34;成&#34;,&#34;派&#34;,&#34;父亲&#34;,&#34;产生&#34;,&#34;行星&#34;,&#34;游戏&#34;,&#34;能够&#34;,&#34;不同&#34;,&#34;其实&#34;,&#34;天线&#34;,&#34;声音&#34;,&#34;雷&#34;,&#34;仿佛&#34;,&#34;不会&#34;,&#34;正在&#34;,&#34;地上&#34;,&#34;执政官&#34;,&#34;请&#34;,&#34;杨&#34;,&#34;监听&#34;,&#34;孩子&#34;,&#34;三个&#34;,&#34;突然&#34;,&#34;似乎&#34;,&#34;这是&#34;,&#34;观测&#34;,&#34;看看&#34;,&#34;太空&#34;,&#34;听到&#34;,&#34;只能&#34;,&#34;日&#34;,&#34;大史&#34;,&#34;一名&#34;,&#34;外星&#34;,&#34;告诉&#34;,&#34;变成&#34;,&#34;发生&#34;,&#34;不能&#34;,&#34;后来&#34;,&#34;需要&#34;,&#34;一片&#34;,&#34;接收&#34;,&#34;应该&#34;,&#34;整个&#34;,&#34;目标&#34;,&#34;眼睛&#34;,&#34;倒计时&#34;,&#34;组织&#34;,&#34;降临&#34;,&#34;立刻&#34;,&#34;社会&#34;,&#34;带&#34;,&#34;点点头&#34;,&#34;显示&#34;,&#34;找&#34;,&#34;部分&#34;,&#34;感到&#34;,&#34;辐射&#34;,&#34;展开&#34;,&#34;以后&#34;,&#34;地说&#34;,&#34;过去&#34;,&#34;显然&#34;,&#34;进入&#34;,&#34;方向&#34;,&#34;杨卫宁&#34;,&#34;力量&#34;,&#34;有人&#34;,&#34;金字塔&#34;,&#34;乱&#34;,&#34;周文王&#34;,&#34;年&#34;,&#34;下去&#34;,&#34;理论&#34;,&#34;不要&#34;,&#34;想象&#34;,&#34;审问者&#34;,&#34;中心&#34;,&#34;完全&#34;,&#34;注意&#34;,&#34;生命&#34;,&#34;觉得&#34;,&#34;下面&#34;,&#34;一条&#34;,&#34;成为&#34;,&#34;肯定&#34;,&#34;长&#34;,&#34;消失&#34;,&#34;构成&#34;,&#34;简单&#34;,&#34;听&#34;,&#34;天空&#34;,&#34;计算&#34;,&#34;生活&#34;,&#34;几乎&#34;,&#34;事情&#34;,&#34;以前&#34;,&#34;下来&#34;,&#34;丁&#34;,&#34;速度&#34;,&#34;审判&#34;,&#34;运动&#34;,&#34;好像&#34;,&#34;收到&#34;,&#34;三颗&#34;,&#34;令&#34;,&#34;发展&#34;,&#34;想到&#34;,&#34;沉默&#34;,&#34;一只&#34;,&#34;倒&#34;,&#34;结构&#34;,&#34;一位&#34;,&#34;士兵&#34;,&#34;希望&#34;,&#34;继续&#34;,&#34;努力&#34;,&#34;位置&#34;,&#34;小时&#34;,&#34;政委&#34;,&#34;仪&#34;],&#34;freq&#34;:[5104,649,628,614,408,339,290,275,265,263,258,250,245,244,241,214,207,204,194,190,188,186,183,181,158,142,139,132,130,121,119,118,118,116,115,113,111,110,110,106,102,100,99,98,98,97,97,95,95,93,92,90,89,87,85,84,83,82,82,81,81,79,78,78,77,77,76,75,75,74,73,71,70,70,69,69,69,68,67,66,65,64,64,62,62,61,61,61,60,60,60,60,60,60,60,59,58,58,58,58,57,57,57,57,57,56,56,56,55,55,55,55,54,54,54,53,53,53,53,53,53,52,52,52,52,51,51,51,51,50,50,50,49,49,49,49,49,48,48,48,48,47,47,47,47,47,46,46,46,46,45,45,45,45,45,44,44,44,44,43,43,43,43,43,43,42,42,42,42,42,42,42,42,42,41,41,41,41,40,40,40,40,40,40,40,39,39,39,39,39,39,38,38,38,38,38,38,38,37,37],&#34;fontFamily&#34;:&#34;Segoe UI&#34;,&#34;fontWeight&#34;:&#34;bold&#34;,&#34;color&#34;:&#34;random-dark&#34;,&#34;minSize&#34;:0,&#34;weightFactor&#34;:0.105799373040752,&#34;backgroundColor&#34;:&#34;white&#34;,&#34;gridSize&#34;:0,&#34;minRotation&#34;:-0.785398163397448,&#34;maxRotation&#34;:0.785398163397448,&#34;shuffle&#34;:true,&#34;rotateRatio&#34;:0.4,&#34;shape&#34;:&#34;triangle&#34;,&#34;ellipticity&#34;:0.65,&#34;figBase64&#34;:null,&#34;hover&#34;:null},&#34;evals&#34;:[],&#34;jsHooks&#34;:{&#34;render&#34;:[{&#34;code&#34;:&#34;function(el,x){\n console.log(123);\n if(!iii){\n window.location.reload();\n iii = False;\n\n }\n }&#34;,&#34;data&#34;:null}]}}</description>
     </item>
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>用R画流程图</title>
+      <link>/posts/2019-06-05-%E7%94%A8r%E7%94%BB%E6%B5%81%E7%A8%8B%E5%9B%BE/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+      <guid>/posts/2019-06-05-%E7%94%A8r%E7%94%BB%E6%B5%81%E7%A8%8B%E5%9B%BE/</guid>
+      <description>library(DiagrammeR)grViz(&amp;quot;digraph fig{scu[label=&amp;#39;四川大学&amp;#39;,shape=box,color=red]scu-&amp;gt;{a,b,c,d}a[label=&amp;#39;公管&amp;#39;shape=box,color=glod]}&amp;quot;){&#34;x&#34;:{&#34;diagram&#34;:&#34;digraph fig{scu[label=\&#34;四川大学\&#34;,shape=box,color=red]\nscu-{a,b,c,d}\na[label=\&#34;公管\&#34;shape=box,color=glod]\n}&#34;,&#34;config&#34;:{&#34;engine&#34;:&#34;dot&#34;,&#34;options&#34;:null}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}</description>
     </item>
     
     <item>
-      <title>Creating a New Theme</title>
-      <link>/posts/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      <title>用R语言搭建个人博客网站</title>
+      <link>/posts/%E7%94%A8r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+      <guid>/posts/%E7%94%A8r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</guid>
+      <description>一、准备第一步：安装R，Rstudio，Git
+第二步：注册Github账号
+第三步：生成 SSH 公钥
+安装好 Git 后，打开Git Bash，输入命令：$ ssh-keygen -t rsa -C “你的GitHub注册邮箱”然后直接三个回车即可，最后得到了两个文件：id_rsa和id_rsa.pub。打开 id_rsa.pub 文件将里面的内容全部复制，或者输入命令，把key复制到剪贴板：$ clip &amp;lt; ~/.ssh/id_rsa.pub登录Github，选择Personal settings-&amp;gt;SSH and GPG keys-&amp;gt;New SSH key，将密钥粘贴到Key下的文本框内，点击Add SSH Key。 第四步：打开Rstudio，安装 blogdown包，在Console中输入命令：install.packages(“blogdown”)二、用Rstudio编辑博客系统配置需要的环境后，你就可以通过Rstudio来生成blog了。
+第一步：新建一个Rblogdown项目
+打开Rstudio，选择File-&amp;gt;New Project-&amp;gt;New Directory-&amp;gt;Website using blogdown。在弹出的New Project对话框中的Hugo theme中可替换hugo主题，hugo主题可以在https://themes.gohugo.io/中获得。上述过程也可以通过命令来实现：blogdown::new_site(theme = “xxx”) 。第二步：你会在你的Rstudio中看到项目文件的列表：
+config.toml: 这是博客的配置文件，可以在这里修改和配置博客的一些全局信息。index.Rmd: 最终生成index.html 。content文件夹: 这里存放了要Post的R markdown 文档或markdown文档。public文件夹：最终博客生成的html文件和一些静态资源文件会放在这里。static文件夹: blogdown需要的一些静态资源文件，像css文件，图片，视频等文件。themes文件夹: hugo主题，blogdown引入的hugo主题会下载到这个文件夹。第三步：输入命令：blogdown::serve_site()可以启动你的博客网站，并在Viewer中显示运行的博客</description>
     </item>
     
     <item>
@@ -74,41 +74,6 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
       <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
 It makes use of a variety of open source projects including:
  https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/posts/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/goisforlovers/</guid>
-      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
-This document is a brief primer on using Go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/posts/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at Install Hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>/posts/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
     </item>
     
   </channel>

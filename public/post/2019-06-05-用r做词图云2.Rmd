@@ -1,0 +1,35 @@
+---
+title: 用R做词图云2
+author: ''
+date: '2019-06-05'
+slug: 用r做词图云2
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+```{r}
+library(jiebaRD)
+
+library(jiebaR)
+
+engine = worker()
+
+word <- scan('C:\\Users\\Lenovo\\Desktop\\《三体Ⅱ黑暗森林》.txt',sep='\n',what='',encoding="UTF-8")
+
+engine_s<-worker(stop_word = "C:\\Users\\Lenovo\\Desktop\\stopwords.txt")
+
+seg<-segment(word,engine_s)
+
+f<-freq(seg)
+
+f<-f[order(f[2],decreasing = TRUE),]
+
+f1<-f[1:200,]
+
+library(wordcloud2)
+
+wordcloud2(f1,size = 3,shape = 'pentagon',backgroundColor = 'black')
+```
+

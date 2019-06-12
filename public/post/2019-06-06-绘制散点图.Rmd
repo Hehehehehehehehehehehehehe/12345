@@ -1,0 +1,11 @@
+---
+title: 绘制散点图
+date: '2019-06-06'
+---
+
+```{r}
+library(ggplot2)
+p<-ggplot(economics,aes(x=pop,y=psavert))
+p+geom_point()+geom_smooth(method = "lm",se=FALSE)
+
+```

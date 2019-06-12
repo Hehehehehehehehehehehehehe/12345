@@ -1,0 +1,13 @@
+---
+title: 用R画流程图
+date: '2019-06-05'
+---
+
+
+```{r}
+library(DiagrammeR)
+grViz("digraph fig{scu[label='四川大学',shape=box,color=red]
+scu->{a,b,c,d}
+a[label='公管'shape=box,color=glod]
+}")
+```

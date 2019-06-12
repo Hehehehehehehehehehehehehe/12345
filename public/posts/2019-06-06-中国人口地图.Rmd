@@ -1,0 +1,39 @@
+---
+title: 中国人口地图
+
+date: '2019-06-06'
+slug: 中国人口地图
+---
+
+library(sp)
+library(maptools)
+library(rgdal)
+library(ggplot2)
+# 载入中国地图数据集
+china=readShapePoly('E:\\Udacity\\Data Analysis High\\R\\R_Study\\第一天数据\\bou2_4p.shp')
+# 获取数据      
+x<-china@data
+# 转换为datafarme
+xs<-data.frame(x,id=seq(0:924)-1)
+# 将china转换为datafarme
+shapefile_df <- fortify(china)
+# 组合成完整的dataframe
+china_mapdata<-join(shapefile_df, xs, type = "full") 
+# 省份名称
+NAME<-c("北京市","天津市","河北省","山西省","内蒙古自治区","辽宁省","吉林省",
+        "黑龙江省","上海市","江苏省","浙江省","安徽省","福建省", "江西省","山东省","河南省",
+        "湖北省", "湖南省","广东省", "广西壮族自治区","海南省", "重庆市","四川省", "贵州省",
+        "云南省","西藏自治区","陕西省","甘肃省","青海省","宁夏回族自治区","新疆维吾尔自治区", 
+        "台湾省","香港特别行政区")
+# 各个省份的人口
+pop<-c(7355291,3963604,20813492,10654162,8470472,15334912,9162183,13192935,8893483,25635291,20060115,19322432,11971873,11847841,30794664,26404973,
+       17253385,19029894,32222752,13467663,2451819,10272559,26383458,10745630,
+       12695396,689521,11084516,7113833,1586635,1945064,6902850,23193638,7026400)
+# 组合成完整的d人口-省份的dataframe
+pop<-data.frame(NAME,pop)
+# 和中国的地图信息相结合,组合成datdaframe
+china_pop<-join(china_mapdata, pop, type = "full")
+
+ggplot(china_pop, aes(x = long, y = lat, group = group,fill=pop))+
+  geom_polygon( )+
+  geom_path(colour = "grey40")

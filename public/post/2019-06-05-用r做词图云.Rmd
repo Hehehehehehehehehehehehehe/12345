@@ -1,0 +1,36 @@
+---
+title: 用R做词图云
+author: ''
+date: '2019-06-05'
+slug: 用r做词图云
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+library(jiebaRD)
+
+library(jiebaR)
+
+engine = worker()
+
+word <- scan('C:\\Users\\Lenovo\\Desktop\\《三体》.txt',sep='\n',what='',encoding="UTF-8")
+
+engine_s<-worker(stop_word = "C:\\Users\\Lenovo\\Desktop\\stopwords.txt")
+
+seg<-segment(word,engine_s)
+
+f<-freq(seg)
+
+f<-f[order(f[2],decreasing = TRUE),]
+
+write.csv(f, file = "三体.csv")
+
+date<-read.csv('三体分词.csv')
+
+f1<-f[1:100,]
+
+library(wordcloud2)
+
+wordcloud2(f1,size = 1,shape = 'triangle',color = 'random-light',backgroundColor = "black")

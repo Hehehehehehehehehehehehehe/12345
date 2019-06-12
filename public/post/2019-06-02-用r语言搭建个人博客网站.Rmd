@@ -1,0 +1,12 @@
+---
+title: 用R语言搭建个人博客网站
+author: ''
+date: '2019-06-02'
+slug: 用r语言搭建个人博客网站
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+
