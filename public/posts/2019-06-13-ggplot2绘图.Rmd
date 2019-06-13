@@ -1,0 +1,85 @@
+---
+title: ggplot2绘图
+author: ''
+date: '2019-06-13'
+slug: ggplot2绘图
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+Plot = data + Aesthetics + Geometry
+
+data：数据集，主要是数据框
+
+Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等
+
+Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等）
+
+qplot（x, y=NULL, data, geom="auto"） ：是一个快速绘图函数，用于绘制简单图形。
+
+ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。
+
+print（） ：生成的图形可以保存为变量，然后可以随时打印出来。
+
+last_plot（） ：返回要修改的最后一个图形
+
+ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。
+
+```{r}
+library(lattice)
+library(ggplot2)
+
+data(mtcars)
+df <- mtcars[, c("mpg","cyl","wt")]
+
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point(color="red",size = 2, shape = 20)+theme_bw()+geom_line(color="blue")
+```
+```{r}
+set.seed(1234)
+wdata = data.frame(sex = factor(rep(c("F", "M"), each=200)),weight = c(rnorm(200, 55), rnorm(200, 58)))
+head(wdata)
+
+a <- ggplot(wdata, aes(x = weight))
+a+geom_histogram(aes(color= sex,fill=sex),alpha = 0.2,position = "stack")+theme_classic()
+```
+```{r}
+p <- ggplot(data = mpg,aes(displ,hwy))
+p+geom_jitter(width = 0.5,height = 0.5)
+```
+```{r}
+c <- ggplot(data = diamonds,aes(carat,price))
+c+geom_bin2d(bins=30)
+library(hexbin)
+c + geom_hex(bins = 10)
+```
+```{r}
+set.seed(1111)
+ss <- economics[sample(1:nrow(economics),20),]
+ggplot(ss,aes(x=date,y=unemploy))+geom_line()
+```
+```{r}
+ggplot(data = faithful, aes(x=eruptions, y=waiting))+geom_point()+geom_rug()
+```
+```{r}
+data("ToothGrowth")
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+head(ToothGrowth)
+e <- ggplot(ToothGrowth, aes(x = dose, y = len))
+e + geom_boxplot()
+e + geom_boxplot(notch = TRUE)
+e + geom_boxplot(aes(color = dose))
+e + geom_boxplot(aes(fill = dose))
+ggplot(ToothGrowth, aes(x=dose, y=len, fill=supp)) +geom_boxplot()
+```
+```{r}
+e + geom_violin(trim = FALSE)
+e + geom_violin(trim = FALSE)+stat_summary(fun.data="mean_sdl",  fun.args = list(mult=1),geom="pointrange", color = "red")
+e + geom_violin(trim = FALSE) + geom_boxplot(width = 0.2)
+e + geom_violin(aes(color = dose), trim = FALSE)
+```
+```{r}
+e + geom_dotplot(binaxis = "y", stackdir = "center")
+e + geom_dotplot(binaxis = "y", stackdir = "center") + stat_summary(fun.data="mean_sdl",  fun.args = list(mult=1),geom="pointrange", color = "red")
+```

@@ -6,8 +6,119 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 12 Jun 2019 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 13 Jun 2019 00:00:00 +0000</lastBuildDate>
 		<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>ggplot2绘图</title>
+			<link>/posts/ggplot2%E7%BB%98%E5%9B%BE/</link>
+			<pubDate>Thu, 13 Jun 2019 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/ggplot2%E7%BB%98%E5%9B%BE/</guid>
+			<description>Plot = data + Aesthetics + Geometry
+data：数据集，主要是数据框
+Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等
+Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等）
+qplot（x, y=NULL, data, geom=“auto”） ：是一个快速绘图函数，用于绘制简单图形。
+ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。
+print（） ：生成的图形可以保存为变量，然后可以随时打印出来。
+last_plot（） ：返回要修改的最后一个图形
+ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。
+library(lattice)library(ggplot2)## Registered S3 methods overwritten by &amp;#39;ggplot2&amp;#39;:## method from ## [.quosures rlang## c.quosures rlang## print.quosures rlangdata(mtcars)df &amp;lt;- mtcars[, c(&amp;quot;mpg&amp;quot;,&amp;quot;cyl&amp;quot;,&amp;quot;wt&amp;quot;)]ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point(color=&amp;quot;red&amp;quot;,size = 2, shape = 20)+theme_bw()+geom_line(color=&amp;quot;blue&amp;quot;)set.</description>
+			<content type="html"><![CDATA[
+
+
+<p>Plot = data + Aesthetics + Geometry</p>
+<p>data：数据集，主要是数据框</p>
+<p>Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等</p>
+<p>Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等）</p>
+<p>qplot（x, y=NULL, data, geom=“auto”） ：是一个快速绘图函数，用于绘制简单图形。</p>
+<p>ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。</p>
+<p>print（） ：生成的图形可以保存为变量，然后可以随时打印出来。</p>
+<p>last_plot（） ：返回要修改的最后一个图形</p>
+<p>ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。</p>
+<pre class="r"><code>library(lattice)
+library(ggplot2)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggplot2&#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang</code></pre>
+<pre class="r"><code>data(mtcars)
+df &lt;- mtcars[, c(&quot;mpg&quot;,&quot;cyl&quot;,&quot;wt&quot;)]
+
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point(color=&quot;red&quot;,size = 2, shape = 20)+theme_bw()+geom_line(color=&quot;blue&quot;)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>set.seed(1234)
+wdata = data.frame(sex = factor(rep(c(&quot;F&quot;, &quot;M&quot;), each=200)),weight = c(rnorm(200, 55), rnorm(200, 58)))
+head(wdata)</code></pre>
+<pre><code>##   sex   weight
+## 1   F 53.79293
+## 2   F 55.27743
+## 3   F 56.08444
+## 4   F 52.65430
+## 5   F 55.42912
+## 6   F 55.50606</code></pre>
+<pre class="r"><code>a &lt;- ggplot(wdata, aes(x = weight))
+a+geom_histogram(aes(color= sex,fill=sex),alpha = 0.2,position = &quot;stack&quot;)+theme_classic()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>p &lt;- ggplot(data = mpg,aes(displ,hwy))
+p+geom_jitter(width = 0.5,height = 0.5)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>c &lt;- ggplot(data = diamonds,aes(carat,price))
+c+geom_bin2d(bins=30)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>library(hexbin)
+c + geom_hex(bins = 10)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>set.seed(1111)
+ss &lt;- economics[sample(1:nrow(economics),20),]
+ggplot(ss,aes(x=date,y=unemploy))+geom_line()</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = faithful, aes(x=eruptions, y=waiting))+geom_point()+geom_rug()</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>data(&quot;ToothGrowth&quot;)
+ToothGrowth$dose &lt;- as.factor(ToothGrowth$dose)
+head(ToothGrowth)</code></pre>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5</code></pre>
+<pre class="r"><code>e &lt;- ggplot(ToothGrowth, aes(x = dose, y = len))
+e + geom_boxplot()</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>e + geom_boxplot(notch = TRUE)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>e + geom_boxplot(aes(color = dose))</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<pre class="r"><code>e + geom_boxplot(aes(fill = dose))</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<pre class="r"><code>ggplot(ToothGrowth, aes(x=dose, y=len, fill=supp)) +geom_boxplot()</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-7-5.png" width="672" /></p>
+<pre class="r"><code>e + geom_violin(trim = FALSE)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>e + geom_violin(trim = FALSE)+stat_summary(fun.data=&quot;mean_sdl&quot;,  fun.args = list(mult=1),geom=&quot;pointrange&quot;, color = &quot;red&quot;)</code></pre>
+<pre><code>## Warning: Computation failed in `stat_summary()`:
+## Hmisc package required for this function</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<pre class="r"><code>e + geom_violin(trim = FALSE) + geom_boxplot(width = 0.2)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+<pre class="r"><code>e + geom_violin(aes(color = dose), trim = FALSE)</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
+<pre class="r"><code>e + geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;)</code></pre>
+<pre><code>## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>e + geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;) + stat_summary(fun.data=&quot;mean_sdl&quot;,  fun.args = list(mult=1),geom=&quot;pointrange&quot;, color = &quot;red&quot;)</code></pre>
+<pre><code>## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Computation failed in `stat_summary()`:
+## Hmisc package required for this function</code></pre>
+<p><img src="/posts/2019-06-13-ggplot2绘图_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>数学成绩统计分析 </title>

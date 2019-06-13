@@ -1,0 +1,20 @@
+---
+title: ggplot2绘图
+author: ''
+date: '2019-06-13'
+slug: ggplot2绘图
+categories:
+  - R
+tags: []
+comments: no
+images: ~
+---
+# Plot = data + Aesthetics + Geometry
++data：数据集，主要是数据框
++Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等
++Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等）
++qplot（） ：是一个快速绘图函数，用于绘制简单图形。
++ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。
++生成的图形可以保存为变量，然后可以用print（）函数随时打印出来。
++last_plot（） ：返回要修改的最后一个图形
++ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。

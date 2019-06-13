@@ -8,18 +8,29 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
+<meta itemprop="name" content="ggplot2绘图">
+<meta itemprop="description" content="Plot = data &#43; Aesthetics &#43; Geometry&#43;data：数据集，主要是数据框 &#43;Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等 &#43;Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等） &#43;qplot（） ：是一个快速绘图函数，用于绘制简单图形。 &#43;ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。 &#43;生成的图形可以保存为变量，然后可以用print（）函数随时打印出来。 &#43;last_plot（） ：返回要修改的最后一个图形 &#43;ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。
+">
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/post/" />
 
-<meta property="og:updated_time" content="2019-06-13T00:00:00&#43;00:00"/>
+<meta itemprop="datePublished" content="2019-06-13T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-13T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="26">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="ggplot2绘图" />
+<meta property="og:description" content="Plot = data &#43; Aesthetics &#43; Geometry&#43;data：数据集，主要是数据框 &#43;Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等 &#43;Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等） &#43;qplot（） ：是一个快速绘图函数，用于绘制简单图形。 &#43;ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。 &#43;生成的图形可以保存为变量，然后可以用print（）函数随时打印出来。 &#43;last_plot（） ：返回要修改的最后一个图形 &#43;ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/ggplot2%E7%BB%98%E5%9B%BE/" />
+<meta property="article:published_time" content="2019-06-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-13T00:00:00&#43;00:00"/>
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="ggplot2绘图"/>
+<meta name="twitter:description" content="Plot = data &#43; Aesthetics &#43; Geometry&#43;data：数据集，主要是数据框 &#43;Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等 &#43;Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等） &#43;qplot（） ：是一个快速绘图函数，用于绘制简单图形。 &#43;ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。 &#43;生成的图形可以保存为变量，然后可以用print（）函数随时打印出来。 &#43;last_plot（） ：返回要修改的最后一个图形 &#43;ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。
+"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,9 +39,9 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Posts</title>
-	<link rel="alternate" type="application/rss+xml+xml" href="/post/index.xml" title="He" />
+	<title>ggplot2绘图</title>
 	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	
 </head>
 
 <body id="page">
@@ -60,17 +71,16 @@
 
 
 	<main class="site-main section-inner thin animated fadeIn faster">
-		<h1>Posts</h1>
-		<div class="posts-group">
-			<div class="post-year" id="2019">2019</div>
-			<ul class="posts-list">
-				<li class="post-item">
-					<a href="/post/ggplot2%E7%BB%98%E5%9B%BE/">
-						<span class="post-title">ggplot2绘图</span>
-						<span class="post-day">Jun 13</span>
-					</a>
-				</li>
-			</ul>
+		<h1>ggplot2绘图</h1>
+		<div class="content">
+			
+
+
+<div id="plot-data-aesthetics-geometry" class="section level1">
+<h1>Plot = data + Aesthetics + Geometry</h1>
+<p>+data：数据集，主要是数据框 +Aesthetics ：映射，用来表示变量x和y，还可以用来控制颜色 ，点的大小或形状，条的高度等 +Geometry ：几何对象，即各种图形类型（直方图、箱线图、线图、直方图、点图等） +qplot（） ：是一个快速绘图函数，用于绘制简单图形。 +ggplot（） ：比qplot更灵活，更强大，可以分图层逐步绘图。 +生成的图形可以保存为变量，然后可以用print（）函数随时打印出来。 +last_plot（） ：返回要修改的最后一个图形 +ggsave（“plot.png”，width = 5，height = 5） ：保存当前工作目录中的最后一个图形。</p>
+</div>
+
 		</div>
 	</main>
 
